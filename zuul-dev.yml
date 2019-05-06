@@ -12,7 +12,7 @@ eureka:
 
 zuul:
   retryable: true
-   routes:
+  routes:
     item-service: /item-service/**
     user-service: /user-service/**
     order-service: /order-service/**
