@@ -1,13 +1,36 @@
-spring: 
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: config-server
-        name: order-service
-        profile: dev
-       
+spring:
+  application:
+    name: order-service
+    
+server:
+  port: 8201
+  
+  
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
+       defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
+       
+feign:
+  hystrix:
+    enabled: true
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+        
+---
+spring:
+  profiles: order1
+  
+server:
+  port: 8201
+  
+---
+spring:
+  profiles: order2
+  
+server:
+  port: 8202
